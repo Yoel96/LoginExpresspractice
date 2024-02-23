@@ -21,8 +21,18 @@ router.get('/',(req,res)=>{
 
 })
 
+router.post('/hola',(req,res)=>{
+    console.log(req.body)
+    res.json(req.body)
+
+})
 
 
+router.post('/login', async (req,res)=>{
+
+    await userController.userLogin(req,res)
+
+})
 router.post('/createUser', async (req,res)=>{
   
     await userController.createUser(req,res)
