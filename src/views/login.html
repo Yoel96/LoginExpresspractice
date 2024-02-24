@@ -11,17 +11,39 @@
 
         <section id="login">
 
-            <form   >
+            <form onsubmit="return false"  >
 
-                <label for="userName">UserName:</label>
-                <input id="userName" type="text" name="userName"  />
+                <label for="userEmail">email:</label>
+                <input id="userEmail" type="email" name="email" required />
                 <label for="pass">Password:</label>
-                <input id="pass" type="password" name="pass"  />
-                <a  onclick="sendLogin()" >enviar</a>
+                <input id="loginPass" type="password" name="pass" required />
+                <button  onclick="sendLogin()">Enviar</button>
+             
             </form>
-
+            <div id="loginResponse">
+                <p></p>
+            </div>
         </section>
+        <section id="register">
 
+            <form onsubmit="return false"  >
+                <label for="userName">Username:</label>
+                <input id="userName" type="text" name="userName" required />
+                <label for="firstName">First name:</label>
+                <input id="firstName" type="text" name="firstName" required />
+                <label for="lastName">Last name:</label>
+                <input id="lastName" type="text" name="lastName" required />
+                <label for="userEmail">email:</label>
+                <input id="userREmail" type="email" name="email" required />
+                <label for="pass">Password:</label>
+                <input id="registerPass" type="password" name="pass" required />
+                <button  onclick="register()">Enviar</button>
+             
+            </form>
+            <div id="loginResponse">
+                <p></p>
+            </div>
+        </section>
 
     </main>
     

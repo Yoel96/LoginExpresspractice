@@ -21,7 +21,6 @@ const getUser = async ( userEmail, userPassword) => {
                 password: userPassword
             }
         })
-        console.log(user)
         return user
     }
     catch (err) {
@@ -35,15 +34,15 @@ const getUser = async ( userEmail, userPassword) => {
 const userLogin = async (req, res) => {
 
     try {
-        const result = await getUser(req.body.email, req.body.password)
+        const result = await getUser(req.body.email, req.body.pass)
         console.log(result)
-        if (result) {
+         if (result!=null) {
 
-            res.status(300).send("login succesfull")
+            res.json(true)
 
         } else {
 
-            res.status(300).send("login failed")
+            res.json(false)
         }
 
 
