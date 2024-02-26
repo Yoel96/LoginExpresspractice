@@ -1,24 +1,26 @@
 const User = require('../models/user.model.js')
-
+const bcrypt= require('bcrypt')
 
 const createUser = async (req, res) => {
 
     try {
-        const body = req.body
-        const result = await User.create(body)
+        
+        let body =  await encryptPass(req.body)
+         
+       const result = await User.create(body)
     } catch (err) {
         throw err
     }
 
 }
 
-const getUser = async ( userEmail, userPassword) => {
+const getUser = async ( userEmail) => {
 
     try {
         const user = await User.findOne({
             where: {
                 email:userEmail,
-                password: userPassword
+               
             }
         })
         return user
@@ -34,15 +36,22 @@ const getUser = async ( userEmail, userPassword) => {
 const userLogin = async (req, res) => {
 
     try {
-        const result = await getUser(req.body.email, req.body.pass)
-        console.log(result)
+        const result = await getUser(req.body.email)
+          
          if (result!=null) {
 
-            res.json(true)
+            const pass= await bcrypt.compare(req.body.pass, result.dataValues.password)
+            if(pass){
+                res.status(200).json(true)
+
+            }else{
+                res.status(500).json(false)
+
+            }
 
         } else {
 
-            res.json(false)
+            res.status(500).json(false)
         }
 
 
@@ -54,6 +63,19 @@ const userLogin = async (req, res) => {
 
 
 }
+
+
+
+const encryptPass= async (body)=>{
+
+ 
+    body.password= await bcrypt.hash(body.password, 10);
+  
+    return body
+
+
+
+    }
 
 
 module.exports = {

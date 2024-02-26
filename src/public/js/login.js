@@ -5,7 +5,7 @@
     let loginEmail=document.getElementById("userEmail").value 
     let loginPassword= document.getElementById("loginPass").value 
     if(loginPassword.length && loginEmail.length ){
-    const response = await fetch("/login", {method:'POST',  headers: {'Accept': 'application/json','Content-Type': 'application/json'}, body:JSON.stringify({email:loginEmail, pass:loginPassword})})
+    const response = await fetch("/users/login", {method:'POST',  headers: {'Accept': 'application/json','Content-Type': 'application/json'}, body:JSON.stringify({email:loginEmail, pass:loginPassword})})
     const result= await response.json()
     if(result){
 
@@ -23,7 +23,7 @@
  const register= async()=>{
 
    const userObj={
-      "userName":document.getElementById("userName").value,
+      "username":document.getElementById("userName").value,
       "firstName":document.getElementById("firstName").value,
       "lastName":document.getElementById("lastName").value,
       "email":document.getElementById("userREmail").value,
@@ -31,7 +31,7 @@
    }
 
    console.log(userObj)
-   const response = await fetch("/createUser", {method:'POST',  headers: {'Accept': 'application/json','Content-Type': 'application/json'}, body:JSON.stringify(userObj)})
+   const response = await fetch("/users/createUser", {method:'POST',  headers: {'Accept': 'application/json','Content-Type': 'application/json'}, body:JSON.stringify(userObj)})
 
 
 

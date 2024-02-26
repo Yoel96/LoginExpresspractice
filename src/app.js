@@ -6,7 +6,7 @@ const User = require('./models/user.model.js')
 app.use(express.json())
 app.use(express.static(path.join(__dirname, 'public')))
 app.disable('x-powered-by')
-app.use('/', require('./routes/loginRoutes.js'))
+app.use('/', require('./routes/index.js'))
 
 sequelize.sync()
 
