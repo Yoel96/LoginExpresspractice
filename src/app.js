@@ -11,7 +11,7 @@ app.use('/', require('./routes/index.js'))
 sequelize.sync()
 
 
-app.listen('3000', (err) => {
+app.listen('8000', (err) => {
 
     if (err) {
         console.log("There is a problem with the server")
